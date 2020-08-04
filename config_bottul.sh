@@ -32,10 +32,10 @@ kill_uneeded_processes () {
 }
 
 remove_dns () {
-		echo "Removing and killing all dnsmasq processes(clears up port 53)..."
-		yum remove dnsmasq
-		killall dnsmasq
-		echo "dnsmasq removed"
+	echo "Removing and killing all dnsmasq processes(clears up port 53)..."
+	yum remove dnsmasq
+	killall dnsmasq
+	echo "dnsmasq removed"
 }
 
 update_yum () {
@@ -95,15 +95,15 @@ EOF
 
 add_groups () {
 	echo "Adding needed groups..."
-  groupadd nogroup &&
-  groupadd docker && 
-  echo "Done."
+	groupadd nogroup &&
+	groupadd docker && 
+	echo "Done."
 }
 
 selinux_permissions () {
 	echo "Editing selinux permissions..."
 	sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
-  echo "Done."
+  	echo "Done."
 }
 
 install_docker_pchk () {
@@ -111,7 +111,7 @@ install_docker_pchk () {
 	y | yum install docker-ce docker-ce-cli containerd.io /y
 	systemctl docker start 
 	systemctl enable docker
-  echo "Done."
+  	echo "Done."
 }
 
 reboot_sys () {
