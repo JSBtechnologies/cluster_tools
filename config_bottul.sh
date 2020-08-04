@@ -118,3 +118,5 @@ reboot_sys () {
 	echo "Configuration complete. Rebooting now..."
 	shutdown -r now
 }
+
+main
