@@ -110,6 +110,7 @@ install_docker_pchk () {
 	echo "Installing Docker..."
 	y | yum install docker-ce docker-ce-cli containerd.io /y
 	systemctl docker start 
+	systemctl enable docker
   echo "Done."
 }
 
