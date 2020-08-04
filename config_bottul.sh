@@ -40,11 +40,11 @@ remove_dns () {
 
 update_yum () {
 	echo "Updating yun repo..."
-	y | yum upgrade --assumeyes --tolerant 
-  y | yum update --assumeyes 
+	yum -y upgrade --assumeyes --tolerant 
+  yum -y update --assumeyes 
   echo "Done."
   echo "Adding Docker repo..."
-  y | yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
+  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
   if [ $? -eq 0 ]; then
 	    echo "Yum update Success."
 	else
@@ -108,10 +108,10 @@ selinux_permissions () {
 
 install_docker_pchk () {
 	echo "Installing Docker..."
-	y | yum install docker-ce docker-ce-cli containerd.io /y
-	systemctl docker start 
+	yum -y install docker-ce docker-ce-cli containerd.io 
+	systemctl start docerk 
 	systemctl enable docker
-  	echo "Done."
+  echo "Done."
 }
 
 reboot_sys () {
