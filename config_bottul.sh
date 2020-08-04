@@ -109,7 +109,7 @@ selinux_permissions () {
 install_docker_pchk () {
 	echo "Installing Docker..."
 	yum -y install docker-ce docker-ce-cli containerd.io 
-	systemctl start docerk 
+	systemctl start docker 
 	systemctl enable docker
   echo "Done."
 }
