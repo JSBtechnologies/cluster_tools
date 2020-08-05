@@ -1,0 +1,22 @@
+    bootstrap_url: http://10.0.0.6:8080
+    exhibitor_storage_backend: static
+    master_discovery: static
+    master_list:
+      - 10.0.0.8
+    agent_list:
+      - 10.0.0.3
+      - 10.0.0.2
+      - 10.0.0.5
+      - 10.0.0.7
+      - 10.0.0.12
+    public_agent_list:
+      - 10.0.0.4
+    resolvers:
+      - 8.8.4.4
+      - 8.8.8.8
+    # This is an ip-detect script example which also stands for ip_detect_public_contents
+    # more info about ip-detect can be found here: https://docs.mesosphere.com/1.13/installing/produc$
+    # ip_detect_contents: |
+    #   #!/bin/sh
+    #   set -o nounset -o errexit
+    #   ip addr show dev eth1 primary | awk '/(inet .*\/)/ { print $2 }' | cut -d'/' -f1
