@@ -34,7 +34,7 @@ kill_uneeded_processes () {
 
 remove_dns () {
 	echo "Removing and killing all dnsmasq processes(clears up port 53)..."
-	yum remove dnsmasq
+	yum -y remove dnsmasq
 	killall dnsmasq
 	echo "dnsmasq removed"
 }
