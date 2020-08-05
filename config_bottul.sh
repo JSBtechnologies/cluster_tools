@@ -13,6 +13,7 @@ main () {
 	update_yum
 	add_modules
 	add_groups
+	setup_ntp
 	selinux_permissions
 	docker_setup
 	install_docker_pchk
@@ -85,7 +86,14 @@ setup_ntp () {
 	server 1.pool.ntp.org iburst
 	server 2.pool.ntp.org iburst
 	server 3.pool.ntp.org iburst
+
+	restrict 10.0.0.0 mask 255.255.255.0 nomodify notrap
 EOF
+	systemctl start ntpd
+	systemctl enable ntpd
+	systemctl status ntpd
+	echo "NTP Set up..."
+	date -R
 }
 
 docker_setup () {
