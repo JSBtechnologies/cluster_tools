@@ -79,6 +79,15 @@ EOF
 	fi
 }
 
+setup_ntp () {
+	sudo tee /etc/ntp.conf <<- EOF
+	server 0.pool.ntp.org iburst
+	server 1.pool.ntp.org iburst
+	server 2.pool.ntp.org iburst
+	server 3.pool.ntp.org iburst
+EOF
+}
+
 docker_setup () {
 	echo "Docker repo setup..."
 	sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF
