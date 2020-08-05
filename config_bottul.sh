@@ -81,6 +81,7 @@ EOF
 }
 
 setup_ntp () {
+	yum -y install ntp
 	sudo tee /etc/ntp.conf <<- EOF
 	server 0.pool.ntp.org iburst
 	server 1.pool.ntp.org iburst
