@@ -2,30 +2,30 @@
 echo ""
 echo ""
 echo "##################################"
-echo "          DC/OS Uninstaller"
+echo "          ATMZPHR Uninstaller"
 echo ""
 echo "What this script does:"
-echo "- This script will uninstall all DC/OS binaries, libraries, and log files"
+echo "- This script will uninstall all ATMZPHR binaries, libraries, and log files"
 echo "  from this machine: $HOSTNAME."
 echo "- This script leaves behind an uninstallation log which details all of the"
 echo "  files that were removed from the machine. The log(s) are located at:"
 echo "  /var/log/dcos.uninstall.log"
 echo "- After running the uninstallation script, this machine is left in a"
-echo "  state where DC/OS can be cleanly installed again."
-echo "- This script is intended to remove DC/OS from Master and Agent nodes and"
+echo "  state where ATMZPHR can be cleanly installed again."
+echo "- This script is intended to remove ATMZPHR from Master and Agent nodes and"
 echo "  should not be used to uninstall a bootstrap node."
 echo ""
 echo "What this script does not do:"
 echo "- If you are running this script on an agent node, you should gracefully"
 echo "  stop any active workloads on this node. This script will proceed with"
-echo "  the uninstallation of DC/OS even with running workloads. However, the"
+echo "  the uninstallation of ATMZPHR even with running workloads. However, the"
 echo "  exit will not be graceful to those active workloads. Also, the "
 echo "  uninstaller may not be able to delete any local ephemeral storage of the"
 echo "  active workload(s) due to file locking issues. Any errors in file removal"
 echo "  are logged in the uninstaller log."
 echo "- This script does not uninstall or alter Docker in any way."
 echo "- This script does not modify any supplemental services or packages"
-echo "  which might have been used to install or configure DC/OS like: NTP, yum,"
+echo "  which might have been used to install or configure ATMZPHR like: NTP, yum,"
 echo "  firewalld, nginx, resolv.conf, etc."
 echo "- This script does not force a reboot after completion. It asks the user"
 echo "  to perform a reboot."
@@ -98,12 +98,12 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 
-#Prompt user to continue with DC/OS uninstallation
-read -p "Do you wish to continue with the uninstallation of DC/OS? (y/n) " YES_FLAG
+#Prompt user to continue with ATMZPHR uninstallation
+read -p "Do you wish to continue with the uninstallation of ATMZPHR? (y/n) " YES_FLAG
 case $YES_FLAG in
   [yY]) echo ""
         echo "Creating uninstall log file at: $UNINSTALL_LOG"
-        echo "################## DC/OS Uninstallation Log ######################" > $UNINSTALL_LOG & PID=$!
+        echo "################## ATMZPHR Uninstallation Log ######################" > $UNINSTALL_LOG & PID=$!
         fancy_progress $PID "Failed to write uninstall log file at $UNINSTALL_LOG"
         echo "" >> $UNINSTALL_LOG
         date >> $UNINSTALL_LOG
@@ -111,9 +111,9 @@ case $YES_FLAG in
         echo ""
         echo ""
 
-        echo "Stopping all DC/OS services (might take 1-2 minutes to complete on a DC/OS Master node)"
+        echo "Stopping all ATMZPHR services (might take 1-2 minutes to complete on a ATMZPHR Master node)"
         systemctl stop dcos-* >/dev/null 2>/dev/null & PID=$!
-        fancy_progress $PID "Failed Stopping DC/OS Services. is DC/OS running?"
+        fancy_progress $PID "Failed Stopping ATMZPHR Services. is ATMZPHR running?"
         echo ""
         echo ""
 
@@ -123,9 +123,9 @@ case $YES_FLAG in
         echo ""
         echo ""
 
-        echo "Removing all DC/OS binaries, libraries, and logs"
+        echo "Removing all ATMZPHR binaries, libraries, and logs"
         rm -rfv /opt/mesosphere /var/lib/mesosphere /etc/mesosphere /var/lib/zookeeper /var/lib/mesos /var/lib/dcos /run/dcos /etc/profile.d/dcos.sh /etc/systemd/journald.conf.d/dcos.conf /etc/systemd/system/dcos* /etc/systemd/system/multi-user.target.wants/dcos-setup.service /etc/systemd/system/multi-user.target.wants/dcos.target /run/mesos /var/log/mesos /tmp/dcos /etc/rexray >> $UNINSTALL_LOG 2>>$UNINSTALL_LOG & PID=$!
-        fancy_progress $PID "\nFailed to remove some DC/OS Files.\nSearch $UNINSTALL_LOG for the word \"cannot\" to see the failed files.\nYou will need to reboot the machine and manually delete those files."
+        fancy_progress $PID "\nFailed to remove some ATMZPHR Files.\nSearch $UNINSTALL_LOG for the word \"cannot\" to see the failed files.\nYou will need to reboot the machine and manually delete those files."
         echo ""
         echo ""
 
@@ -137,10 +137,10 @@ case $YES_FLAG in
         echo ""
         echo ""
         echo ""
-        echo -e "${RED}DC/OS Uninstallation Complete"
+        echo -e "${RED}ATMZPHR Uninstallation Complete"
         echo -e "Please Restart the Machine${NC}"
         echo -e ""
-        echo -e "Restarting the system will clean up any existing file locks which might cause problems for re-installing DC/OS. Also, the reboot will clear any advanced DC/OS networking configurations which might be invalid for re-installation."
+        echo -e "Restarting the system will clean up any existing file locks which might cause problems for re-installing ATMZPHR. Also, the reboot will clear any advanced ATMZPHR networking configurations which might be invalid for re-installation."
         ;;
 
   [nN]) echo "Uninstallation aborted at request of user."
