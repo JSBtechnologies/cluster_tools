@@ -129,6 +129,7 @@ install_docker_pchk () {
 	yum -y install docker-ce docker-ce-cli containerd.io 
 	systemctl start docker 
 	systemctl enable docker
+	systemctl daemon-reload
   echo "Done."
 }
 
