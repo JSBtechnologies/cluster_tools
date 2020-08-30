@@ -83,7 +83,8 @@ EOF
 setup_ntp () {
 	yum -y install ntp
   	systemctl start ntpd
-	systemctl enable ntpd
+	systemctl enable ntpd.service
+	systemctl enable ntpdate.service
 	systemctl status ntpd
 	sudo tee /etc/ntp.conf <<- EOF
 	server 0.pool.ntp.org iburst
@@ -94,6 +95,7 @@ setup_ntp () {
 	restrict 10.0.0.0 mask 255.255.255.0 nomodify notrap
 EOF
 	echo "NTP Set up..."
+	timedatectl
 	date -R
 }
 
