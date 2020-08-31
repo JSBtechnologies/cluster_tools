@@ -1,0 +1,21 @@
+#!/bin/bash
+#Auth: Jeffrie Budde 2020
+#It is recommended to look over the script to know what it is actually doing before running it.
+#Initial VM set up for configuration for Atmzphr
+
+
+
+
+1.) Add wireguard and set it up
+
+2.) send off peer value to server to add it 
+
+
+SS of the simple port forwarding set for admin panel. 
+RAX45 router = 192.168.1.9 
+Port 80 set to forward traffic to Mesos Dash(10.0.0.8:80)
+
+
+
+
+
